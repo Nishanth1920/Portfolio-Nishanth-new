@@ -324,7 +324,7 @@ export default function Hero() {
               </defs>
               <text className="orbit-text">
                 <textPath href="#orbit-path" startOffset="0%">
-                  Open to Work • Open to Work • Open to Work • Open to Work • Open to Work •
+                  Open to Work • Open to Work • Open to Work • Open to Work • 
                 </textPath>
               </text>
             </svg>
@@ -408,10 +408,10 @@ export default function Hero() {
         }
         .orbit-text {
           fill: var(--accent-primary);
-          font-size: 4.5px;
-          font-weight: 600;
+          font-size: 5.5px;
+          font-weight: 500;
           letter-spacing: 2px;
-          opacity: 0.4;
+          opacity: 0.8;
         }
         @keyframes orbit-spin {
           to { transform: rotate(360deg); }
