@@ -78,15 +78,18 @@ body {
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
-.glass-card {
-  transition: background-color 0.2s ease, border-color 0.2s ease;
-}
-
-nav a, .btn-primary, .btn-secondary, .tag, section {
-  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+html.theme-transitioning body,
+html.theme-transitioning .glass-card,
+html.theme-transitioning section,
+html.theme-transitioning nav a,
+html.theme-transitioning .btn-primary,
+html.theme-transitioning .btn-secondary,
+html.theme-transitioning .tag,
+html.theme-transitioning .aurora-overlay,
+html.theme-transitioning .container {
+  transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease !important;
 }
 
 ::-webkit-scrollbar { width: 4px; }

@@ -12,8 +12,12 @@ function getInitialTheme() {
 }
 
 function applyTheme(theme) {
+  document.documentElement.classList.add('theme-transitioning');
   document.documentElement.setAttribute('data-theme', theme);
   localStorage.setItem('portfolio-theme', theme);
+  setTimeout(() => {
+    document.documentElement.classList.remove('theme-transitioning');
+  }, 350);
 }
 
 export function ThemeProvider({ children }) {

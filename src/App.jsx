@@ -11,6 +11,7 @@ import SmoothScroll from './components/SmoothScroll';
 import ScrollProgress from './components/ScrollProgress';
 import BackToTop from './components/BackToTop';
 import MouseGlow from './components/MouseGlow';
+import DynamicBackground from './components/DynamicBackground';
 
 const CustomCursor = lazy(() => import('./components/CustomCursor'));
 
@@ -22,6 +23,7 @@ export default function App() {
         <CustomCursor />
       </Suspense>
       <MouseGlow />
+      <DynamicBackground />
       <BackToTop />
       <Navbar />
       <main>

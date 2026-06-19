@@ -213,11 +213,44 @@ export default function Hero() {
                 color: 'var(--text-secondary)',
                 lineHeight: 1.8,
                 maxWidth: 500,
-                marginBottom: 36,
+                marginBottom: 20,
               }}
             >
               {personalInfo.tagline}
             </motion.p>
+
+            <motion.div
+              className="marquee-wrap"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0.55 }}
+              style={{ marginBottom: 32, maxWidth: 500 }}
+            >
+              <div className="marquee-track">
+                <div className="marquee-content">
+                  <span>API Integration</span><span className="dot">•</span>
+                  <span>System Design</span><span className="dot">•</span>
+                  <span>Product Building</span><span className="dot">•</span>
+                  <span>Workflow Automation</span><span className="dot">•</span>
+                  <span>Scalable Architecture</span><span className="dot">•</span>
+                  <span>Payment Integrations</span><span className="dot">•</span>
+                  <span>Database Optimization</span><span className="dot">•</span>
+                  <span>SaaS Development</span><span className="dot">•</span>
+                  <span>Performance Engineering</span><span className="dot">•</span>
+                </div>
+                <div className="marquee-content" aria-hidden="true">
+                  <span>API Integration</span><span className="dot">•</span>
+                  <span>System Design</span><span className="dot">•</span>
+                  <span>Product Building</span><span className="dot">•</span>
+                  <span>Workflow Automation</span><span className="dot">•</span>
+                  <span>Scalable Architecture</span><span className="dot">•</span>
+                  <span>Payment Integrations</span><span className="dot">•</span>
+                  <span>Database Optimization</span><span className="dot">•</span>
+                  <span>SaaS Development</span><span className="dot">•</span>
+                  <span>Performance Engineering</span><span className="dot">•</span>
+                </div>
+              </div>
+            </motion.div>
 
             <motion.div
               className="hero-stats"
@@ -266,15 +299,14 @@ export default function Hero() {
             className="hero-avatar"
             style={{ position: 'relative' }}
           >
+            <div className="avatar-blob" />
             <div
-              className="float-avatar"
               style={{
                 width: 280,
                 height: 280,
                 borderRadius: '50%',
                 overflow: 'hidden',
                 position: 'relative',
-                border: '2.5px solid var(--accent-primary)',
               }}
             >
               <img
@@ -297,6 +329,7 @@ export default function Hero() {
                 }}
               />
             </div>
+            <div className="avatar-ring" />
           </motion.div>
         </div>
       </div>
@@ -386,14 +419,80 @@ export default function Hero() {
         @media (max-width: 900px) {
           .hero-avatar { display: none; }
         }
-        .float-avatar {
-          animation: float 5s ease-in-out infinite;
-          animation-delay: 1s;
+        .avatar-ring {
+          position: absolute;
+          inset: -4px;
+          border-radius: 50%;
+          background: conic-gradient(from 0deg, #6366f1, #8b5cf6, #06b6d4, #a78bfa, #6366f1);
+          mask: radial-gradient(farthest-side, transparent calc(100% - 2px), #000 calc(100% - 1px));
+          -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 2px), #000 calc(100% - 1px));
+          animation: ring-spin 25s linear infinite;
+          pointer-events: none;
+          z-index: 1;
         }
-        @keyframes float {
-          0%, 100% { transform: translateY(0); }
-          25% { transform: translateY(-5px); }
-          75% { transform: translateY(5px); }
+        .avatar-blob {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          width: 340px;
+          height: 340px;
+          transform: translate(-50%, -50%);
+          border-radius: 60% 40% 70% 30% / 45% 55% 45% 55%;
+          background: linear-gradient(135deg, rgba(139,92,246,0.25), rgba(99,102,241,0.15));
+          filter: blur(60px);
+          animation: blob-morph 12s ease-in-out infinite alternate;
+          pointer-events: none;
+          z-index: 0;
+        }
+        @keyframes blob-morph {
+          0% { border-radius: 60% 40% 70% 30% / 45% 55% 45% 55%; transform: translate(-50%, -50%) scale(1) rotate(0deg); }
+          33% { border-radius: 40% 60% 30% 70% / 55% 45% 55% 45%; transform: translate(-50%, -50%) scale(1.08) rotate(5deg); }
+          66% { border-radius: 70% 30% 50% 50% / 30% 60% 40% 70%; transform: translate(-50%, -50%) scale(0.95) rotate(-3deg); }
+          100% { border-radius: 30% 70% 40% 60% / 60% 40% 70% 30%; transform: translate(-50%, -50%) scale(1.05) rotate(4deg); }
+        }
+        @keyframes ring-spin {
+          to { transform: rotate(360deg); }
+        }
+        .marquee-wrap {
+          width: 100%;
+          overflow: hidden;
+          mask-image: linear-gradient(to right, transparent 0%, #000 8%, #000 92%, transparent 100%);
+          -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 8%, #000 92%, transparent 100%);
+        }
+        .marquee-track {
+          display: flex;
+          width: max-content;
+          animation: marquee 25s linear infinite;
+        }
+        .marquee-wrap:hover .marquee-track {
+          animation-play-state: paused;
+        }
+        .marquee-content {
+          display: flex;
+          align-items: center;
+          gap: 0;
+          white-space: nowrap;
+        }
+        .marquee-content span {
+          font-size: 0.82rem;
+          font-weight: 500;
+          letter-spacing: 0.3px;
+          color: var(--accent);
+          opacity: 0.7;
+          transition: opacity 0.2s ease;
+        }
+        .marquee-track:hover span {
+          opacity: 1;
+        }
+        .marquee-content .dot {
+          margin: 0 10px;
+          font-size: 0.65rem;
+          color: var(--accent);
+          opacity: 0.35;
+        }
+        @keyframes marquee {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
         }
         @media (max-width: 768px) {
           .hero-inner { flex-direction: column; gap: 32px !important; text-align: center; }
@@ -402,6 +501,7 @@ export default function Hero() {
           .hero-btns { justify-content: center; }
           .hero-stats { justify-content: center; gap: 32px !important; margin-top: 48px !important; }
           .hero-stats div { font-size: 1.6rem !important; }
+          .marquee-content span { font-size: 0.75rem; }
         }
       `}</style>
     </section>
