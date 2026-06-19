@@ -517,7 +517,7 @@ export default function Hero() {
           .hero-avatar { display: none; }
           .hero-inner { flex-direction: column; gap: 32px !important; text-align: center; }
           .hero-content { max-width: 100% !important; display: flex; flex-direction: column; align-items: center; }
-          .hero-btns { justify-content: center; margin-bottom: 32px; }
+          .hero-btns { justify-content: center; }
           .hero-stats { justify-content: center; gap: 32px !important; margin-top: 48px !important; }
           .hero-stats div { font-size: 1.6rem !important; }
           .marquee-content span { font-size: 0.75rem; }
