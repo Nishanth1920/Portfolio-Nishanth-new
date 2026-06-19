@@ -324,7 +324,7 @@ export default function Hero() {
               </defs>
               <text className="orbit-text">
                 <textPath href="#orbit-path" startOffset="0%">
-                  Open to Work • Open to Work • Open to Work • Open to Work • Open to Work •
+                  Open to Work | Open to Work | Open to Work | Open to Work | Open to Work |
                 </textPath>
               </text>
             </svg>
