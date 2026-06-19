@@ -291,6 +291,10 @@ export default function Contact() {
       <style>{`
         @media (max-width: 768px) {
           .contact-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
+          #contact.section { padding-bottom: 40px; }
+        }
+        @media (max-width: 480px) {
+          #contact.section { padding-bottom: 32px; }
         }
       `}</style>
     </section>

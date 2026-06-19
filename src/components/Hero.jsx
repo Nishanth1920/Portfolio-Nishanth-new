@@ -263,7 +263,7 @@ export default function Hero() {
               style={{ display: 'flex', gap: 36, marginBottom: 40 }}
             >
               {[
-                { label: 'Years Exp', value: '4+' },
+                { label: 'Yrs Exp', value: '4+' },
                 { label: 'Projects', value: '15+' },
                 { label: 'Clients', value: '20+' },
               ].map((s) => (
@@ -333,6 +333,16 @@ export default function Hero() {
               />
             </div>
             <div className="avatar-ring" />
+            <svg className="orbit-svg" viewBox="0 0 100 100">
+              <defs>
+                <path id="orbit-path" d="M 50,50 m -46,0 a 46,46 0 1,1 92,0 a 46,46 0 1,1 -92,0" />
+              </defs>
+              <text className="orbit-text">
+                <textPath href="#orbit-path" startOffset="0%">
+                  Open to Work • Open to Work • Open to Work • Open to Work • Open to Work •
+                </textPath>
+              </text>
+            </svg>
           </motion.div>
         </div>
       </div>
@@ -403,6 +413,23 @@ export default function Hero() {
           animation: ring-spin 25s linear infinite;
           pointer-events: none;
           z-index: 1;
+        }
+        .orbit-svg {
+          position: absolute;
+          inset: -32px;
+          animation: orbit-spin 22s linear infinite;
+          pointer-events: none;
+          z-index: 3;
+        }
+        .orbit-text {
+          fill: var(--text-primary);
+          font-size: 4.5px;
+          font-weight: 500;
+          letter-spacing: 1.5px;
+          opacity: 0.3;
+        }
+        @keyframes orbit-spin {
+          to { transform: rotate(360deg); }
         }
         .avatar-blob {
           position: absolute;
