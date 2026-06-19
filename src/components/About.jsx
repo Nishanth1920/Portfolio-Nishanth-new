@@ -98,7 +98,7 @@ export default function About() {
                   {personalInfo.title}
                 </p>
                 <p style={{ color: 'var(--text-muted)', fontSize: '0.82rem', marginTop: 8, lineHeight: 1.6 }}>
-                  Building the future, one commit at a time.
+                  Transforming ideas into scalable software solutions.
                 </p>
               </div>
             </div>

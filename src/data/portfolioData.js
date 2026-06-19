@@ -26,12 +26,12 @@ import { VscVscode } from 'react-icons/vsc';
 
 export const personalInfo = {
   name: 'Nishanth M',
-  title: 'Software Engineer',
+  title: 'Software Developer • API Specialist • Product Builder',
   avatarUrl: 'https://avatars.githubusercontent.com/u/121602108?v=4',
   tagline: 'Code is my tool. Solving problems is my craft.',
   bio: [
-    "I'm Nishanth, a software developer with 4+ years of experience building web applications, business systems, and digital products. I believe programming languages are just tools—the real goal is understanding problems and creating solutions that make a meaningful impact. Whether it's a SaaS platform, mobile application, workflow automation, or enterprise software, I focus on choosing the right technology for the challenge rather than being limited to a single stack.",
-    'Over the years, I have worked on business-critical applications and helped transform ideas into reliable, scalable products. While I am a PHP expert, my approach goes beyond any specific language or framework. I enjoy exploring new technologies, solving complex problems, and building software that helps businesses work smarter, operate more efficiently, and grow with confidence. For me, great software is not about the code itself—it is about the value it creates for the people who use it.',
+    "I'm Nishanth, a software developer with 4+ years of experience building web applications, RESTful APIs, business systems, and digital products. I enjoy turning complex business requirements into scalable, reliable, and user-friendly software solutions. From backend architecture and API integrations to complete end-to-end application development, I focus on creating technology that delivers real value.",
+    'I believe programming languages are just tools—the real craft lies in solving problems. As a PHP expert and product-minded developer, I have worked on business-critical applications, third-party API integrations, workflow automation, and custom software solutions. My passion is building products that help businesses operate more efficiently, scale confidently, and transform ideas into impactful digital experiences.',
   ],
   location: 'Kanyakumari, India',
   email: 'nicknishanth100@gmail.com',
@@ -81,9 +81,9 @@ export const experiences = [
     company: 'Trawex Technologies',
     period: 'June 2025 - Present',
     description: [
-      'Developing robust web applications using PHP and CodeIgniter framework with MySQL and MSSQL databases',
-      'Implementing responsive frontend interfaces using modern CSS frameworks and JavaScript',
-      'Building efficient data management solutions with optimized database queries',
+      'Developing and maintaining business-critical applications serving enterprise and travel industry clients, focusing on performance, scalability, and reliability',
+      'Integrating third-party APIs including payment gateways (Stripe, Razorpay), travel suppliers (flights, hotels, transfers), and real-time data services',
+      'Building responsive frontend interfaces and optimizing database architecture for high-traffic business applications',
     ],
     tech: ['PHP', 'CodeIgniter', 'MySQL', 'MSSQL', 'JavaScript', 'Bootstrap', 'Tailwind CSS'],
   },
@@ -93,9 +93,9 @@ export const experiences = [
     company: 'Docme Cloud Solutions',
     period: '2024 - 2025',
     description: [
-      'Developed robust web applications using PHP and CodeIgniter framework',
-      'Worked with MySQL and MSSQL databases to create efficient data management solutions',
-      'Implemented responsive frontend interfaces using modern CSS frameworks and JavaScript',
+      'Developed and maintained business applications handling document management, workflow automation, and enterprise data processing',
+      'Integrated multiple database systems (MySQL, MSSQL) with optimized query design for complex reporting and data management',
+      'Built responsive frontend interfaces and collaborated on full-stack feature development from requirements to deployment',
     ],
     tech: ['PHP', 'CodeIgniter', 'MySQL', 'MSSQL', 'JavaScript', 'Bootstrap'],
   },
@@ -105,9 +105,9 @@ export const experiences = [
     company: 'NerXpire Technologies',
     period: '2022 - 2024',
     description: [
-      'Built dynamic web applications with PHP backend and modern frontend technologies',
-      'Utilized Bootstrap and Tailwind CSS for responsive design',
-      'Implemented AJAX for seamless user interactions and optimized database queries for better performance',
+      'Built dynamic web applications from the ground up using PHP backend with modern frontend technologies',
+      'Implemented responsive UI designs and interactive features using AJAX for seamless user experiences',
+      'Optimized database queries and application performance, reducing load times and improving system reliability',
     ],
     tech: ['PHP', 'JavaScript', 'Bootstrap', 'Tailwind CSS', 'MySQL', 'AJAX'],
   },
@@ -117,7 +117,7 @@ export const projects = [
   {
     id: 1,
     title: 'HR Management System',
-    description: 'A comprehensive HR management system with employee tracking, payroll processing, and performance evaluation features.',
+    description: 'Built a comprehensive HR and payroll management system handling employee tracking, attendance, payroll processing, and performance evaluations for enterprise clients.',
     tech: ['React', 'CodeIgniter', 'MSSQL', 'Tailwind CSS'],
     liveUrl: '#',
     githubUrl: '#',
@@ -126,7 +126,7 @@ export const projects = [
   {
     id: 2,
     title: 'Employee Management System',
-    description: 'A robust employee management system with features for onboarding, attendance tracking, and performance reviews.',
+    description: 'Developed an end-to-end employee lifecycle platform covering onboarding, attendance tracking, performance reviews, and role-based access control for organizations.',
     tech: ['PHP', 'CodeIgniter', 'MSSQL', 'Bootstrap'],
     liveUrl: '#',
     githubUrl: '#',
@@ -135,7 +135,7 @@ export const projects = [
   {
     id: 3,
     title: 'Education Management Suite',
-    description: 'A unified education platform managing the full academic lifecycle — student enrollment, attendance tracking, grade management, course planning, faculty administration, and parent communication for both schools and colleges.',
+    description: 'Built a unified education platform managing the full academic lifecycle — student enrollment, attendance tracking, grade management, course planning, faculty administration, and parent communication for schools and colleges.',
     tech: ['PHP', 'CodeIgniter', 'MSSQL', 'Bootstrap', 'jQuery'],
     liveUrl: '#',
     githubUrl: '#',
@@ -144,7 +144,7 @@ export const projects = [
   {
     id: 4,
     title: 'Travel Booking Solutions',
-    description: 'A comprehensive booking platform for flights, hotels, car rentals, cruises, and airport transfers — with B2C customer front-end, B2B agent portal, and admin dashboard — integrating real-time supplier APIs, dynamic pricing, and multi-currency payment processing across all verticals.',
+    description: 'Built a travel booking platform integrating flights, hotels, car rentals, cruises, and transfers through multiple supplier APIs, handling real-time pricing, booking workflows, B2B/B2C portals, and multi-currency payment processing.',
     tech: ['PHP', 'CodeIgniter', 'MSSQL', 'jQuery', 'Bootstrap'],
     liveUrl: '#',
     githubUrl: '#',
@@ -153,7 +153,7 @@ export const projects = [
   {
     id: 5,
     title: 'AI-Powered CRM & Sales Engine',
-    description: 'An AI-driven CRM with Gmail and Outlook sync, automated email and call sequencing, smart lead management, sales pipeline tracking, and multi-channel follow-up (email, call, WhatsApp, SMS) — including AI-powered read/write email automation and intelligent response suggestions.',
+    description: 'Developed an AI-powered CRM with Gmail and Outlook integration, automated follow-ups, lead tracking, sales pipeline management, and AI-assisted email communication workflows with multi-channel engagement.',
     tech: ['PHP', 'CodeIgniter', 'MSSQL', 'jQuery', 'Bootstrap'],
     liveUrl: '#',
     githubUrl: '#',

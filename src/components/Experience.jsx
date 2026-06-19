@@ -91,13 +91,6 @@ function ExperienceCard({ exp, index }) {
           ))}
         </ul>
 
-        <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
-          {exp.tech.map((t) => (
-            <span key={t} className="tag" style={{ fontSize: '0.75rem' }}>
-              {t}
-            </span>
-          ))}
-        </div>
       </div>
     </motion.div>
   );

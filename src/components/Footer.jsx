@@ -38,7 +38,7 @@ export default function Footer() {
 
           <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
             <span style={{ color: 'var(--text-muted)', fontSize: '0.8rem' }}>
-              Built with React
+              Built and designed by Nishanth M.
             </span>
             <div style={{ display: 'flex', gap: 10 }}>
               {[
