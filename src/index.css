@@ -64,6 +64,7 @@ html {
   scrollbar-width: thin;
   scrollbar-color: var(--accent-primary) var(--bg-primary);
   color-scheme: dark;
+  overflow-x: hidden;
 }
 
 [data-theme='light'] {

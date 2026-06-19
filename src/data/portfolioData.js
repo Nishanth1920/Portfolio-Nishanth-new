@@ -26,7 +26,7 @@ import { VscVscode } from 'react-icons/vsc';
 
 export const personalInfo = {
   name: 'Nishanth M',
-  title: 'Software Developer • API Specialist • Product Builder',
+  title: 'Software Engineer',
   avatarUrl: 'https://avatars.githubusercontent.com/u/121602108?v=4',
   tagline: 'Code is my tool. Solving problems is my craft.',
   bio: [

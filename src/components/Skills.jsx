@@ -144,10 +144,6 @@ export default function Skills() {
         >
           <span className="section-label">Expertise</span>
           <h2 className="section-title">Technical proficiency</h2>
-          <p className="section-subtitle">
-            <span style={{ fontVariantNumeric: 'tabular-nums', fontWeight: 600 }}>{skills.length}</span> technologies across{' '}
-            <span style={{ fontVariantNumeric: 'tabular-nums', fontWeight: 600 }}>{groups.length}</span> domains
-          </p>
         </motion.div>
 
         <div style={{ display: 'flex', justifyContent: 'center', gap: 8, marginBottom: 44, flexWrap: 'wrap' }}>
