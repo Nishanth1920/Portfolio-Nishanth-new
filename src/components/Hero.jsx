@@ -44,6 +44,8 @@ export default function Hero() {
     await loadSlim(engine);
   }, []);
 
+  const isMobile = typeof window !== 'undefined' && window.innerWidth <= 768;
+
   return (
     <section
       id="hero"
@@ -66,7 +68,7 @@ export default function Hero() {
       </div>
 
       {/* Particle Network */}
-      <Particles
+      {!isMobile && (<Particles
         id="tsparticles"
         init={particlesInit}
         style={{
@@ -122,16 +124,16 @@ export default function Hero() {
           },
           detectRetina: true,
         }}
-      />
+      />)}
 
       {/* Content */}
       <div className="container" style={{ width: '100%', position: 'relative', zIndex: 2 }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 80, justifyContent: 'space-between' }}>
+        <div className="hero-inner">
           <motion.div
+            className="hero-content"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-            style={{ maxWidth: 620 }}
           >
             <motion.div
               initial={{ opacity: 0, y: 15, scale: 0.95 }}
@@ -205,6 +207,7 @@ export default function Hero() {
             </motion.div>
 
             <motion.p
+              className="hero-text"
               initial={{ opacity: 0, y: 20, scale: 0.98 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               transition={{ duration: 0.6, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
@@ -302,8 +305,8 @@ export default function Hero() {
             <div className="avatar-blob" />
             <div
               style={{
-                width: 280,
-                height: 280,
+                width: 'var(--avatar-size)',
+                height: 'var(--avatar-size)',
                 borderRadius: '50%',
                 overflow: 'hidden',
                 position: 'relative',
@@ -333,35 +336,6 @@ export default function Hero() {
           </motion.div>
         </div>
       </div>
-
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.2, duration: 0.6 }}
-        style={{
-          position: 'absolute',
-          bottom: 40,
-          left: '50%',
-          transform: 'translateX(-50%)',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          gap: 8,
-          color: 'var(--text-muted)',
-          fontSize: '0.7rem',
-          fontWeight: 500,
-          letterSpacing: 2,
-          textTransform: 'uppercase',
-          zIndex: 2,
-        }}
-      >
-        <span>Scroll</span>
-        <motion.div
-          animate={{ y: [0, 6, 0] }}
-          transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
-          style={{ width: 1, height: 24, background: 'var(--text-muted)', opacity: 0.4 }}
-        />
-      </motion.div>
 
       <style>{`
         .aurora-bg {
@@ -416,8 +390,8 @@ export default function Hero() {
           75% { transform: translate(60px, 40px) scale(1.05); }
           100% { transform: translate(-40px, -30px) scale(1); }
         }
-        @media (max-width: 900px) {
-          .hero-avatar { display: none; }
+        .hero-avatar {
+          --avatar-size: 280px;
         }
         .avatar-ring {
           position: absolute;
@@ -434,8 +408,8 @@ export default function Hero() {
           position: absolute;
           top: 50%;
           left: 50%;
-          width: 340px;
-          height: 340px;
+          width: calc(var(--avatar-size) * 1.25);
+          height: calc(var(--avatar-size) * 1.25);
           transform: translate(-50%, -50%);
           border-radius: 60% 40% 70% 30% / 45% 55% 45% 55%;
           background: linear-gradient(135deg, rgba(139,92,246,0.25), rgba(99,102,241,0.15));
@@ -494,14 +468,39 @@ export default function Hero() {
           0% { transform: translateX(0); }
           100% { transform: translateX(-50%); }
         }
+        .hero-inner {
+          display: flex;
+          align-items: center;
+          gap: 80px;
+          justify-content: space-between;
+        }
+        .hero-content {
+          max-width: 620px;
+          flex-shrink: 0;
+        }
+        .hero-content .hero-text {
+          margin-left: 0;
+        }
+        @media (max-width: 1024px) {
+          .hero-avatar { --avatar-size: 200px; }
+          .hero-inner { gap: 48px; }
+          .hero-content { max-width: 480px; }
+        }
         @media (max-width: 768px) {
+          .hero-avatar { display: none; }
           .hero-inner { flex-direction: column; gap: 32px !important; text-align: center; }
-          .hero-content { max-width: 100% !important; }
-          .hero-text { margin-left: auto; margin-right: auto; }
-          .hero-btns { justify-content: center; }
+          .hero-content { max-width: 100% !important; display: flex; flex-direction: column; align-items: center; }
+          .hero-btns { justify-content: center; margin-bottom: 32px; }
           .hero-stats { justify-content: center; gap: 32px !important; margin-top: 48px !important; }
           .hero-stats div { font-size: 1.6rem !important; }
           .marquee-content span { font-size: 0.75rem; }
+        }
+        @media (max-width: 480px) {
+          .hero-avatar { --avatar-size: 120px; }
+          .marquee-wrap {
+            mask-image: linear-gradient(to right, transparent 0%, #000 4%, #000 96%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 4%, #000 96%, transparent 100%);
+          }
         }
       `}</style>
     </section>

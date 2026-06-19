@@ -15,6 +15,8 @@ import DynamicBackground from './components/DynamicBackground';
 
 const CustomCursor = lazy(() => import('./components/CustomCursor'));
 
+const isMobileTouch = typeof window !== 'undefined' && window.innerWidth <= 768 && ('ontouchstart' in window || navigator.maxTouchPoints > 0);
+
 export default function App() {
   return (
     <SmoothScroll>
@@ -22,8 +24,8 @@ export default function App() {
       <Suspense fallback={null}>
         <CustomCursor />
       </Suspense>
-      <MouseGlow />
-      <DynamicBackground />
+      {!isMobileTouch && <MouseGlow />}
+      {!isMobileTouch && <DynamicBackground />}
       <BackToTop />
       <Navbar />
       <main>
