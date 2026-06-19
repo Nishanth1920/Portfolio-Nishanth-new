@@ -23,6 +23,18 @@
             theme = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
           }
           document.documentElement.setAttribute('data-theme', theme);
+          var saved = JSON.parse(localStorage.getItem('portfolio-colors'));
+          if (saved) {
+            var p = saved[theme + '_accent_primary'];
+            var s = saved[theme + '_accent_secondary'];
+            var t = saved[theme + '_accent_tertiary'];
+            if (p) {
+              var root = document.documentElement;
+              root.style.setProperty('--accent-primary', p);
+              root.style.setProperty('--accent-secondary', s || p);
+              root.style.setProperty('--accent-tertiary', t || p);
+            }
+          }
         } catch(e) {}
       })();
     </script>

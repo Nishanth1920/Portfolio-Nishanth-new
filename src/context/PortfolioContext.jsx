@@ -54,6 +54,10 @@ function parseTexts(rows) {
   return map;
 }
 
+const savedColors = (() => {
+  try { return JSON.parse(localStorage.getItem('portfolio-colors')); } catch { return null; }
+})();
+
 export function PortfolioProvider({ children }) {
   const [data, setData] = useState({
     personalInfo: staticPersonalInfo,
@@ -61,7 +65,7 @@ export function PortfolioProvider({ children }) {
     experiences: staticExperiences,
     projects: staticProjects,
     siteTexts: defaultTexts,
-    colors: defaultColors,
+    colors: savedColors || defaultColors,
     personalInfoId: null,
     loading: false,
   });
@@ -81,6 +85,8 @@ export function PortfolioProvider({ children }) {
 
       if (infoRes.data) {
         const pi = infoRes.data;
+        const mergedColors = textsRes.data ? { ...defaultColors, ...Object.fromEntries(Object.entries(parseTexts(textsRes.data)).filter(([k]) => k.startsWith('colors.')).map(([k, v]) => [k.replace('colors.', ''), v])) } : defaultColors;
+        localStorage.setItem('portfolio-colors', JSON.stringify(mergedColors));
         setData({
           personalInfo: {
             name: pi.name,
@@ -102,7 +108,7 @@ export function PortfolioProvider({ children }) {
           experiences: expRes.data?.length ? expRes.data : staticExperiences,
           projects: projRes.data?.length ? projRes.data : staticProjects,
           siteTexts: textsRes.data ? { ...defaultTexts, ...parseTexts(textsRes.data) } : defaultTexts,
-          colors: textsRes.data ? { ...defaultColors, ...Object.fromEntries(Object.entries(parseTexts(textsRes.data)).filter(([k]) => k.startsWith('colors.')).map(([k, v]) => [k.replace('colors.', ''), v])) } : defaultColors,
+          colors: mergedColors,
           loading: false,
         });
       }
