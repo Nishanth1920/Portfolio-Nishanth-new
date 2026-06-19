@@ -1,9 +1,9 @@
-import { useCallback, useState, useEffect, useRef } from 'react';
+import { useCallback, useState, useEffect, useRef, Fragment } from 'react';
 import { motion, useInView } from 'framer-motion';
 import Particles from '@tsparticles/react';
 import { loadSlim } from '@tsparticles/slim';
 import { HiArrowRight } from 'react-icons/hi';
-import { personalInfo } from '../data/portfolioData';
+import { usePortfolio } from '../context/PortfolioContext';
 
 function AnimatedStat({ value, label }) {
   const [count, setCount] = useState(0);
@@ -39,12 +39,13 @@ function AnimatedStat({ value, label }) {
 }
 
 export default function Hero() {
-
+  const { personalInfo, siteTexts, t } = usePortfolio();
   const particlesInit = useCallback(async (engine) => {
     await loadSlim(engine);
   }, []);
 
   const isMobile = typeof window !== 'undefined' && window.innerWidth <= 768;
+  const accentPrimary = typeof window !== 'undefined' ? getComputedStyle(document.documentElement).getPropertyValue('--accent-primary').trim() || '#6366f1' : '#6366f1';
 
   return (
     <section
@@ -96,9 +97,9 @@ export default function Hero() {
             },
           },
           particles: {
-            color: { value: '#6366f1' },
+            color: { value: accentPrimary },
             links: {
-              color: '#6366f1',
+              color: accentPrimary,
               distance: 120,
               enable: true,
               opacity: 0.12,
@@ -145,8 +146,8 @@ export default function Hero() {
                 gap: 8,
                 padding: '5px 16px 5px 5px',
                 borderRadius: '9999px',
-                background: 'rgba(99, 102, 241, 0.08)',
-                border: '1px solid rgba(99, 102, 241, 0.12)',
+                background: 'var(--glass-bg)',
+                border: '1px solid var(--glass-border)',
                 fontSize: '0.8rem',
                 color: 'var(--text-secondary)',
                 marginBottom: 36,
@@ -231,26 +232,14 @@ export default function Hero() {
             >
               <div className="marquee-track">
                 <div className="marquee-content">
-                  <span>API Integration</span><span className="dot">•</span>
-                  <span>System Design</span><span className="dot">•</span>
-                  <span>Product Building</span><span className="dot">•</span>
-                  <span>Workflow Automation</span><span className="dot">•</span>
-                  <span>Scalable Architecture</span><span className="dot">•</span>
-                  <span>Payment Integrations</span><span className="dot">•</span>
-                  <span>Database Optimization</span><span className="dot">•</span>
-                  <span>SaaS Development</span><span className="dot">•</span>
-                  <span>Performance Engineering</span><span className="dot">•</span>
+                  {(siteTexts['hero.marquee_items'] || []).map((item, i) => (
+                    <Fragment key={i}><span>{item}</span><span className="dot">•</span></Fragment>
+                  ))}
                 </div>
                 <div className="marquee-content" aria-hidden="true">
-                  <span>API Integration</span><span className="dot">•</span>
-                  <span>System Design</span><span className="dot">•</span>
-                  <span>Product Building</span><span className="dot">•</span>
-                  <span>Workflow Automation</span><span className="dot">•</span>
-                  <span>Scalable Architecture</span><span className="dot">•</span>
-                  <span>Payment Integrations</span><span className="dot">•</span>
-                  <span>Database Optimization</span><span className="dot">•</span>
-                  <span>SaaS Development</span><span className="dot">•</span>
-                  <span>Performance Engineering</span><span className="dot">•</span>
+                  {(siteTexts['hero.marquee_items'] || []).map((item, i) => (
+                    <Fragment key={i}><span>{item}</span><span className="dot">•</span></Fragment>
+                  ))}
                 </div>
               </div>
             </motion.div>
@@ -262,11 +251,7 @@ export default function Hero() {
               transition={{ duration: 0.6, delay: 0.65, ease: [0.16, 1, 0.3, 1] }}
               style={{ display: 'flex', gap: 36, marginBottom: 40 }}
             >
-              {[
-                { label: 'Yrs Exp', value: '4+' },
-                { label: 'Projects', value: '15+' },
-                { label: 'Clients', value: '20+' },
-              ].map((s) => (
+              {(siteTexts['hero.stats'] || []).map((s) => (
                 <AnimatedStat key={s.label} value={s.value} label={s.label} />
               ))}
             </motion.div>
@@ -283,14 +268,14 @@ export default function Hero() {
                 className="btn-primary"
                 style={{ padding: '14px 32px', fontSize: '0.95rem' }}
               >
-                View My Work <HiArrowRight />
+                {t('hero', 'view_work_btn')} <HiArrowRight />
               </a>
               <a
                 href="#contact"
                 className="btn-secondary"
                 style={{ padding: '14px 32px', fontSize: '0.95rem' }}
               >
-                Get in Touch
+                {t('hero', 'get_in_touch_btn')}
               </a>
             </motion.div>
           </motion.div>
@@ -365,7 +350,7 @@ export default function Hero() {
         .aurora-1 {
           width: 700px;
           height: 700px;
-          background: radial-gradient(circle, rgba(139,92,246,0.3), transparent 70%);
+          background: radial-gradient(circle, color-mix(in srgb, var(--accent-tertiary) 30%, transparent), transparent 70%);
           top: -200px;
           left: -200px;
           animation-duration: 55s;
@@ -373,7 +358,7 @@ export default function Hero() {
         .aurora-2 {
           width: 550px;
           height: 550px;
-          background: radial-gradient(circle, rgba(59,130,246,0.25), transparent 70%);
+          background: radial-gradient(circle, color-mix(in srgb, var(--accent-primary) 25%, transparent), transparent 70%);
           bottom: -180px;
           right: -120px;
           animation-duration: 65s;
@@ -382,7 +367,7 @@ export default function Hero() {
         .aurora-3 {
           width: 450px;
           height: 450px;
-          background: radial-gradient(circle, rgba(6,182,212,0.2), transparent 70%);
+          background: radial-gradient(circle, color-mix(in srgb, var(--accent-secondary) 20%, transparent), transparent 70%);
           top: 30%;
           left: 40%;
           animation-duration: 50s;
@@ -407,7 +392,7 @@ export default function Hero() {
           position: absolute;
           inset: -4px;
           border-radius: 50%;
-          background: conic-gradient(from 0deg, #6366f1, #8b5cf6, #06b6d4, #a78bfa, #6366f1);
+          background: conic-gradient(from 0deg, var(--accent-primary), var(--accent-tertiary), var(--accent-secondary), var(--accent-tertiary), var(--accent-primary));
           mask: radial-gradient(farthest-side, transparent calc(100% - 2px), #000 calc(100% - 1px));
           -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 2px), #000 calc(100% - 1px));
           animation: ring-spin 25s linear infinite;
@@ -422,11 +407,11 @@ export default function Hero() {
           z-index: 3;
         }
         .orbit-text {
-          fill: var(--text-primary);
+          fill: var(--accent-primary);
           font-size: 4.5px;
-          font-weight: 500;
-          letter-spacing: 1.5px;
-          opacity: 0.3;
+          font-weight: 600;
+          letter-spacing: 2px;
+          opacity: 0.4;
         }
         @keyframes orbit-spin {
           to { transform: rotate(360deg); }
@@ -439,7 +424,7 @@ export default function Hero() {
           height: calc(var(--avatar-size) * 1.25);
           transform: translate(-50%, -50%);
           border-radius: 60% 40% 70% 30% / 45% 55% 45% 55%;
-          background: linear-gradient(135deg, rgba(139,92,246,0.25), rgba(99,102,241,0.15));
+          background: linear-gradient(135deg, color-mix(in srgb, var(--accent-tertiary) 25%, transparent), color-mix(in srgb, var(--accent-primary) 15%, transparent));
           filter: blur(60px);
           animation: blob-morph 12s ease-in-out infinite alternate;
           pointer-events: none;

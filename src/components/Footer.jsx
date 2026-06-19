@@ -1,8 +1,9 @@
 import { motion } from 'framer-motion';
-import { personalInfo } from '../data/portfolioData';
+import { usePortfolio } from '../context/PortfolioContext';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
 
 export default function Footer() {
+  const { personalInfo, t } = usePortfolio();
   return (
     <motion.footer
       initial={{ opacity: 0 }}

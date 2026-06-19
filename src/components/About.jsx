@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { personalInfo } from '../data/portfolioData';
+import { usePortfolio } from '../context/PortfolioContext';
 import { HiCode, HiLightningBolt, HiCube } from 'react-icons/hi';
 
 const highlights = [
@@ -9,6 +9,8 @@ const highlights = [
 ];
 
 export default function About() {
+  const { personalInfo, siteTexts, t } = usePortfolio();
+  const highlights = siteTexts['about.highlights'] || [];
   return (
     <section id="about" className="section" style={{ overflow: 'hidden' }}>
       <div className="container">
@@ -19,9 +21,9 @@ export default function About() {
             viewport={{ once: true, margin: '-80px' }}
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
           >
-            <span className="section-label">About Me</span>
+            <span className="section-label">{t('about', 'label')}</span>
             <h2 className="section-title" style={{ textAlign: 'left', maxWidth: 500 }}>
-              Turning complex problems into elegant scalable solutions
+              {t('about', 'title')}
             </h2>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
               {personalInfo.bio.map((p, i) => (
@@ -45,7 +47,7 @@ export default function About() {
               style={{ marginTop: 32, display: 'flex', gap: 12 }}
             >
               <a href={personalInfo.resumeUrl} className="btn-primary">
-                Download Resume
+                {t('about', 'resume_btn')}
               </a>
               <a
                 href={personalInfo.social.linkedin}
@@ -53,7 +55,7 @@ export default function About() {
                 rel="noopener noreferrer"
                 className="btn-secondary"
               >
-                LinkedIn
+                {t('about', 'linkedin_btn')}
               </a>
             </motion.div>
           </motion.div>
@@ -98,7 +100,7 @@ export default function About() {
                   {personalInfo.title}
                 </p>
                 <p style={{ color: 'var(--text-muted)', fontSize: '0.82rem', marginTop: 8, lineHeight: 1.6 }}>
-                  Transforming ideas into scalable software solutions.
+                  {t('about', 'side_text')}
                 </p>
               </div>
             </div>
@@ -128,7 +130,7 @@ export default function About() {
                       flexShrink: 0,
                     }}
                   >
-                    <item.icon />
+                    {item.icon ? <item.icon /> : <span style={{fontSize:'0.9rem',opacity:0.5}}>✦</span>}
                   </div>
                   <div>
                     <h3 style={{ fontSize: '1rem', fontWeight: 600, marginBottom: 4, color: 'var(--text-primary)' }}>

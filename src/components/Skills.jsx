@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { skills } from '../data/portfolioData';
+import { usePortfolio } from '../context/PortfolioContext';
 
 const groups = [
   {
@@ -117,6 +117,7 @@ function SkillCard({ skill, group }) {
 }
 
 export default function Skills() {
+  const { skills, t } = usePortfolio();
   const [active, setActive] = useState('all');
 
   const filtered = active === 'all'
@@ -142,8 +143,8 @@ export default function Skills() {
           transition={{ duration: 0.5 }}
           className="section-header"
         >
-          <span className="section-label">Expertise</span>
-          <h2 className="section-title">Technical proficiency</h2>
+          <span className="section-label">{t('skills', 'label')}</span>
+          <h2 className="section-title">{t('skills', 'title')}</h2>
         </motion.div>
 
         <div style={{ display: 'flex', justifyContent: 'center', gap: 8, marginBottom: 44, flexWrap: 'wrap' }}>

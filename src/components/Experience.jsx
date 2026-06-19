@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
-import { experiences } from '../data/portfolioData';
+import { usePortfolio } from '../context/PortfolioContext';
 
-function ExperienceCard({ exp, index }) {
+function ExperienceCard({ exp, index, total }) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -11,7 +11,7 @@ function ExperienceCard({ exp, index }) {
       style={{
         position: 'relative',
         paddingLeft: 40,
-        paddingBottom: index < experiences.length - 1 ? 48 : 0,
+        paddingBottom: index < total - 1 ? 48 : 0,
       }}
     >
       <div
@@ -19,7 +19,7 @@ function ExperienceCard({ exp, index }) {
           position: 'absolute',
           left: 15,
           top: 8,
-          bottom: index < experiences.length - 1 ? 0 : 8,
+          bottom: index < total - 1 ? 0 : 8,
           width: 2,
           background: 'linear-gradient(180deg, var(--accent-primary), var(--accent-secondary))',
           opacity: 0.15,
@@ -97,6 +97,7 @@ function ExperienceCard({ exp, index }) {
 }
 
 export default function Experience() {
+  const { experiences, t } = usePortfolio();
   return (
     <section id="experience" className="section" style={{ overflow: 'hidden' }}>
       <div className="container">
@@ -107,16 +108,16 @@ export default function Experience() {
           transition={{ duration: 0.5 }}
           className="section-header"
         >
-          <span className="section-label">Experience</span>
-          <h2 className="section-title">Where I've worked</h2>
+          <span className="section-label">{t('experience', 'label')}</span>
+          <h2 className="section-title">{t('experience', 'title')}</h2>
           <p className="section-subtitle">
-            A track record of delivering impact across diverse teams and technologies.
+            {t('experience', 'subtitle')}
           </p>
         </motion.div>
 
         <div style={{ maxWidth: 720, margin: '0 auto' }}>
           {experiences.map((exp, i) => (
-            <ExperienceCard key={exp.id} exp={exp} index={i} />
+            <ExperienceCard key={exp.id} exp={exp} index={i} total={experiences.length} />
           ))}
         </div>
       </div>

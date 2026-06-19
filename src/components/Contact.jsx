@@ -1,7 +1,7 @@
 import { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 import emailjs from '@emailjs/browser';
-import { personalInfo } from '../data/portfolioData';
+import { usePortfolio } from '../context/PortfolioContext';
 import { HiMail, HiLocationMarker, HiPaperAirplane } from 'react-icons/hi';
 import Magnetic from './Magnetic';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
@@ -17,7 +17,7 @@ const item = {
 };
 
 export default function Contact() {
-
+  const { personalInfo, t } = usePortfolio();
   const formRef = useRef(null);
   const [form, setForm] = useState({ name: '', email: '', message: '' });
   const [submitted, setSubmitted] = useState(false);
@@ -77,10 +77,10 @@ export default function Contact() {
           transition={{ duration: 0.5 }}
           className="section-header"
         >
-          <span className="section-label">Contact</span>
-          <h2 className="section-title">Let's work together</h2>
+          <span className="section-label">{t('contact', 'label')}</span>
+          <h2 className="section-title">{t('contact', 'title')}</h2>
           <p className="section-subtitle">
-            Have a project in mind? I'd love to hear about it. Send me a message and I'll get back to you promptly.
+            {t('contact', 'subtitle')}
           </p>
         </motion.div>
 
@@ -106,7 +106,7 @@ export default function Contact() {
               style={{ padding: '32px' }}
             >
               <h3 style={{ fontSize: '1rem', fontWeight: 600, marginBottom: 28, color: 'var(--text-primary)' }}>
-                Contact Information
+                {t('contact', 'info_heading')}
               </h3>
 
               <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>

@@ -2,16 +2,8 @@ import { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { HiMenuAlt3, HiX, HiSun, HiMoon } from 'react-icons/hi';
 import { useTheme } from '../context/ThemeContext';
+import { usePortfolio } from '../context/PortfolioContext';
 import ScrollProgress from './ScrollProgress';
-
-const navLinks = [
-  { label: 'Home', href: '#hero' },
-  { label: 'About', href: '#about' },
-  { label: 'Skills', href: '#skills' },
-  { label: 'Work', href: '#experience' },
-  { label: 'Projects', href: '#projects' },
-  { label: 'Contact', href: '#contact' },
-];
 
 function scrollWithOffset(href) {
   const id = href.replace('#', '');
@@ -24,6 +16,15 @@ function scrollWithOffset(href) {
 
 export default function Navbar() {
   const { theme, toggleTheme } = useTheme();
+  const { siteTexts } = usePortfolio();
+  const navLinks = siteTexts['navbar.links'] || [
+    { label: 'Home', href: '#hero' },
+    { label: 'About', href: '#about' },
+    { label: 'Skills', href: '#skills' },
+    { label: 'Work', href: '#experience' },
+    { label: 'Projects', href: '#projects' },
+    { label: 'Contact', href: '#contact' },
+  ];
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('hero');

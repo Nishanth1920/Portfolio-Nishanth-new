@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { projects } from '../data/portfolioData';
+import { usePortfolio } from '../context/PortfolioContext';
 
 const gradients = [
   'linear-gradient(180deg, #6366f1, #06b6d4)',
@@ -10,18 +10,8 @@ const gradients = [
   'linear-gradient(180deg, #f97316, #06b6d4)',
 ];
 
-const titles = [
-  'HR & Payroll',
-  'Employee Lifecycle',
-  'Education Suite',
-  'Travel Booking',
-  'AI CRM',
-  'API Clients',
-];
-
 function ProjectCard({ project, index }) {
   const gradient = gradients[index % gradients.length];
-  const shortTitle = titles[index % titles.length];
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -72,7 +62,7 @@ function ProjectCard({ project, index }) {
           lineHeight: 1.3,
         }}
       >
-        {shortTitle}
+        {project.title}
       </h3>
 
       <p
@@ -90,6 +80,7 @@ function ProjectCard({ project, index }) {
 }
 
 export default function Projects() {
+  const { projects, t } = usePortfolio();
   return (
     <section id="projects" className="section" style={{ background: 'var(--bg-secondary)', overflow: 'hidden' }}>
       <div className="container">
@@ -100,10 +91,10 @@ export default function Projects() {
           transition={{ duration: 0.5 }}
           className="section-header"
         >
-          <span className="section-label">Projects</span>
-          <h2 className="section-title">Featured work</h2>
+          <span className="section-label">{t('projects', 'label')}</span>
+          <h2 className="section-title">{t('projects', 'title')}</h2>
           <p className="section-subtitle">
-            Real-world projects showcasing architecture, performance, and user experience.
+            {t('projects', 'subtitle')}
           </p>
         </motion.div>
 

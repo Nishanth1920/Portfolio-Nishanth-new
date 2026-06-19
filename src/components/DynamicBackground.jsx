@@ -52,7 +52,7 @@ export default function DynamicBackground() {
           width: '100%',
           height: '100%',
           willChange: 'transform',
-          background: 'radial-gradient(800px circle at 50% 50%, rgba(99,102,241,0.04), transparent 60%)',
+          background: 'radial-gradient(800px circle at 50% 50%, color-mix(in srgb, var(--accent-primary) 4%, transparent), transparent 60%)',
         }}
       />
       <div
@@ -62,7 +62,7 @@ export default function DynamicBackground() {
           width: '100%',
           height: '100%',
           willChange: 'transform',
-          background: 'radial-gradient(600px circle at 50% 50%, rgba(139,92,246,0.025), transparent 50%)',
+          background: 'radial-gradient(600px circle at 50% 50%, color-mix(in srgb, var(--accent-tertiary) 2.5%, transparent), transparent 50%)',
         }}
       />
     </div>
