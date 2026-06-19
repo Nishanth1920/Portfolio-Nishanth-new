@@ -1,9 +1,42 @@
-import { useCallback } from 'react';
-import { motion } from 'framer-motion';
+import { useCallback, useState, useEffect, useRef } from 'react';
+import { motion, useInView } from 'framer-motion';
 import Particles from '@tsparticles/react';
 import { loadSlim } from '@tsparticles/slim';
 import { HiArrowRight } from 'react-icons/hi';
 import { personalInfo } from '../data/portfolioData';
+
+function AnimatedStat({ value, label }) {
+  const [count, setCount] = useState(0);
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: '-100px' });
+  const target = parseInt(value);
+  const suffix = value.replace(/[0-9]/g, '');
+
+  useEffect(() => {
+    if (!isInView) return;
+    let start = null;
+    const duration = 1500;
+    const step = (timestamp) => {
+      if (!start) start = timestamp;
+      const progress = Math.min((timestamp - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      setCount(Math.floor(eased * target));
+      if (progress < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  }, [isInView, target]);
+
+  return (
+    <div ref={ref}>
+      <div style={{ fontSize: '1.6rem', fontWeight: 700, color: 'var(--text-primary)', lineHeight: 1 }}>
+        {count}{suffix}
+      </div>
+      <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginTop: 4, fontWeight: 500 }}>
+        {label}
+      </div>
+    </div>
+  );
+}
 
 export default function Hero() {
 
@@ -198,14 +231,7 @@ export default function Hero() {
                 { label: 'Projects', value: '15+' },
                 { label: 'Clients', value: '20+' },
               ].map((s) => (
-                <div key={s.label}>
-                  <div style={{ fontSize: '1.6rem', fontWeight: 700, color: 'var(--text-primary)', lineHeight: 1 }}>
-                    {s.value}
-                  </div>
-                  <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginTop: 4, fontWeight: 500 }}>
-                    {s.label}
-                  </div>
-                </div>
+                <AnimatedStat key={s.label} value={s.value} label={s.label} />
               ))}
             </motion.div>
 
@@ -241,6 +267,7 @@ export default function Hero() {
             style={{ position: 'relative' }}
           >
             <div
+              className="float-avatar"
               style={{
                 width: 280,
                 height: 280,
@@ -314,35 +341,35 @@ export default function Hero() {
         .aurora {
           position: absolute;
           border-radius: 50%;
-          filter: blur(100px);
-          opacity: 0.45;
-          animation: aurora-drift 20s ease-in-out infinite alternate;
+          filter: blur(120px);
+          opacity: 0.4;
+          animation: aurora-drift 60s ease-in-out infinite alternate;
         }
         .aurora-1 {
           width: 700px;
           height: 700px;
-          background: radial-gradient(circle, rgba(99,102,241,0.35), transparent 70%);
+          background: radial-gradient(circle, rgba(139,92,246,0.3), transparent 70%);
           top: -200px;
           left: -200px;
-          animation-duration: 22s;
+          animation-duration: 55s;
         }
         .aurora-2 {
-          width: 500px;
-          height: 500px;
-          background: radial-gradient(circle, rgba(6,182,212,0.25), transparent 70%);
-          bottom: -150px;
-          right: -100px;
-          animation-duration: 26s;
-          animation-delay: -4s;
+          width: 550px;
+          height: 550px;
+          background: radial-gradient(circle, rgba(59,130,246,0.25), transparent 70%);
+          bottom: -180px;
+          right: -120px;
+          animation-duration: 65s;
+          animation-delay: -10s;
         }
         .aurora-3 {
-          width: 400px;
-          height: 400px;
-          background: radial-gradient(circle, rgba(139,92,246,0.2), transparent 70%);
-          top: 40%;
-          left: 50%;
-          animation-duration: 24s;
-          animation-delay: -8s;
+          width: 450px;
+          height: 450px;
+          background: radial-gradient(circle, rgba(6,182,212,0.2), transparent 70%);
+          top: 30%;
+          left: 40%;
+          animation-duration: 50s;
+          animation-delay: -20s;
         }
         .aurora-overlay {
           position: absolute;
@@ -358,6 +385,15 @@ export default function Hero() {
         }
         @media (max-width: 900px) {
           .hero-avatar { display: none; }
+        }
+        .float-avatar {
+          animation: float 5s ease-in-out infinite;
+          animation-delay: 1s;
+        }
+        @keyframes float {
+          0%, 100% { transform: translateY(0); }
+          25% { transform: translateY(-5px); }
+          75% { transform: translateY(5px); }
         }
         @media (max-width: 768px) {
           .hero-inner { flex-direction: column; gap: 32px !important; text-align: center; }

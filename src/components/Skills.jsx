@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { skills } from '../data/portfolioData';
 
 const groups = [
@@ -45,15 +45,10 @@ const allGroups = [
   ...groups,
 ];
 
-function SkillCard({ skill, group, index }) {
+function SkillCard({ skill, group }) {
   const Icon = skill.icon;
   return (
-    <motion.div
-      layout
-      initial={{ opacity: 0, scale: 0.85 }}
-      animate={{ opacity: 1, scale: 1 }}
-      exit={{ opacity: 0, scale: 0.85 }}
-      transition={{ duration: 0.35, delay: index * 0.035, ease: [0.16, 1, 0.3, 1] }}
+    <div
       style={{
         background: 'var(--glass-bg)',
         backdropFilter: 'blur(24px) saturate(1.5)',
@@ -117,7 +112,7 @@ function SkillCard({ skill, group, index }) {
       >
         {group.label}
       </span>
-    </motion.div>
+    </div>
   );
 }
 
@@ -184,30 +179,23 @@ export default function Skills() {
           })}
         </div>
 
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={active}
-            className="skills-grid"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.25 }}
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fill, minmax(160px, 1fr))',
-              gap: 16,
-              maxWidth: 760,
-              margin: '0 auto',
-            }}
-          >
-            {filtered.map((skill, i) => {
-              const group = groups.find((g) => g.match(skill)) || groups[0];
-              return (
-                <SkillCard key={skill.name} skill={skill} group={group} index={i} />
-              );
-            })}
-          </motion.div>
-        </AnimatePresence>
+        <div
+          className="skills-grid"
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(160px, 1fr))',
+            gap: 16,
+            maxWidth: 760,
+            margin: '0 auto',
+          }}
+        >
+          {filtered.map((skill) => {
+            const group = groups.find((g) => g.match(skill)) || groups[0];
+            return (
+              <SkillCard key={skill.name} skill={skill} group={group} />
+            );
+          })}
+        </div>
       </div>
 
       <style>{`
