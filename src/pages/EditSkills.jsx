@@ -23,7 +23,7 @@ export default function EditSkills() {
   };
 
   const addItem = () => {
-    setItems([...items, { name: '', icon: '', category: 'backend', level: 80 }]);
+    setItems([...items, { name: '', category: 'backend', level: 80 }]);
   };
 
   const removeItem = (i) => {
@@ -53,7 +53,7 @@ export default function EditSkills() {
 
       for (let i = 0; i < filtered.length; i++) {
         const s = filtered[i];
-        const rec = { name: s.name, icon: s.icon, category: s.category, level: s.level, order: i };
+        const rec = { name: s.name, category: s.category, level: s.level, order: i };
         if (s.id) { rec.id = s.id; }
         else { rec.id = nextId++; }
         const { error: e2 } = await supabase.from('skills').upsert(rec, { onConflict: 'id' });
