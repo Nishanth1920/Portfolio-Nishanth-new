@@ -6,6 +6,23 @@ import {
   experiences as staticExperiences,
   projects as staticProjects,
 } from '../data/portfolioData';
+import {
+  SiReact, SiPhp, SiTailwindcss, SiBootstrap, SiJquery, SiMysql,
+  SiJavascript, SiStripe, SiRazorpay, SiPaypal, SiCodeigniter,
+  SiNodedotjs, SiPostgresql, SiPostman, SiInsomnia, SiDocker,
+  SiOpenai, SiRedis, SiGit, SiUbuntu,
+} from 'react-icons/si';
+import { DiDatabase } from 'react-icons/di';
+import { FaCreditCard, FaExchangeAlt, FaFileWord, FaFileExcel } from 'react-icons/fa';
+import { VscVscode } from 'react-icons/vsc';
+
+const iconMap = {
+  SiReact, SiPhp, SiTailwindcss, SiBootstrap, SiJquery, SiMysql,
+  SiJavascript, SiStripe, SiRazorpay, SiPaypal, SiCodeigniter,
+  SiNodedotjs, SiPostgresql, SiPostman, SiInsomnia, SiDocker,
+  SiOpenai, SiRedis, SiGit, SiUbuntu, DiDatabase,
+  FaCreditCard, FaExchangeAlt, FaFileWord, FaFileExcel, VscVscode,
+};
 
 const defaultColors = {
   dark_accent_primary: '#6366f1',
@@ -104,7 +121,7 @@ export function PortfolioProvider({ children }) {
             },
           },
           personalInfoId: pi.id,
-          skills: skillsRes.data?.length ? skillsRes.data : staticSkills,
+          skills: skillsRes.data?.length ? skillsRes.data.map((s) => ({ ...s, icon: iconMap[s.icon] || null })) : staticSkills,
           experiences: expRes.data?.length ? expRes.data : staticExperiences,
           projects: projRes.data?.length ? projRes.data : staticProjects,
           siteTexts: textsRes.data ? { ...defaultTexts, ...parseTexts(textsRes.data) } : defaultTexts,

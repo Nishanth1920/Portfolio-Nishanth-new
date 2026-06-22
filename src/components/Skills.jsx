@@ -89,7 +89,7 @@ function SkillCard({ skill, group }) {
           boxShadow: `0 0 20px ${group.color}0c`,
         }}
       >
-        <Icon />
+        {Icon ? <Icon /> : <span style={{ fontSize: '0.75rem', opacity: 0.4 }}>●</span>}
       </div>
 
       <h4 style={{ fontSize: '0.9rem', fontWeight: 650, color: 'var(--text-primary)', marginBottom: 8, letterSpacing: '-0.01em' }}>
